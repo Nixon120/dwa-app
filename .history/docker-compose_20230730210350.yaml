@@ -1,0 +1,31 @@
+version: '3.7'
+services:
+  dvwa:
+    image: vulnerables/web-dvwa
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - db
+    environment:
+      - DVWA_DB_HOST=db
+      - DVWA_DB_PORT_NUMBER=5432
+      - DVWA_DB_USER=dvwa
+      - DVWA_DB_PASSWORD=dvwa
+      - DVWA_DB_DATABASE=dvwa
+    volumes:
+      - dvwa-data:/var/www/html
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=dvwa
+      - POSTGRES_PASSWORD=dvwa
+      - POSTGRES_DB=dvwa
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+volumes:
+  db-data:
+  dvwa-data:
