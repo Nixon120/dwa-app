@@ -16,7 +16,7 @@ services:
     volumes:
       - dvwa-data:/var/www/html
 
-#Nixon 
+#
   db:
     image: postgres
     restart: always
